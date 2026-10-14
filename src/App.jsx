@@ -32,10 +32,24 @@ const initialAssignments = [
 
 
 
+
 function App() {
   const [assignments, setAssignments] = useState(initialAssignments);
 
+  const totalAssignments = assignments.length;
+
+  const completedAssignments = assignments.filter(
+    (assignment) => assignment.completed
+  ).length;
+
+  const pendingAssignments =
+    totalAssignments - completedAssignments;
+
+  
+    // Keep the rest of your existing JSX here
+
   return (
+    
 
     <div className="dashboard">
       <aside className="sidebar">
@@ -95,21 +109,21 @@ function App() {
           <article className="stat-card">
             <div className="stat-icon purple-icon">☷</div>
             <p>Total assignments</p>
-            <h2>06</h2>
+            <h2>{totalAssignments}</h2>
             <span className="stat-note">Keep up the good work</span>
           </article>
 
           <article className="stat-card">
             <div className="stat-icon green-icon">✓</div>
             <p>Completed</p>
-            <h2>03</h2>
+            <h2>{completedAssignments}</h2>
             <span className="stat-note">Tasks finished</span>
           </article>
 
           <article className="stat-card">
             <div className="stat-icon orange-icon">◷</div>
             <p>Pending tasks</p>
-            <h2>03</h2>
+            <h2>{pendingAssignments}</h2>
             <span className="stat-note">One step at a time</span>
           </article>
 
