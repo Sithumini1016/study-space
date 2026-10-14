@@ -1,13 +1,16 @@
 
+import { useState } from 'react';
 import './App.css';
 
-const assignments = [
+
+const initialAssignments = [
   {
     id: 1,
     title: 'Research Report',
     subject: 'Computer Science',
     due: 'Due Friday',
     priority: 'High',
+    completed: false,
   },
   {
     id: 2,
@@ -15,6 +18,7 @@ const assignments = [
     subject: 'Business Studies',
     due: 'Due Monday',
     priority: 'Medium',
+    completed: false,
   },
   {
     id: 3,
@@ -22,11 +26,17 @@ const assignments = [
     subject: 'Information Systems',
     due: 'Due Wednesday',
     priority: 'Low',
+    completed: false,
   },
 ];
 
+
+
 function App() {
+  const [assignments, setAssignments] = useState(initialAssignments);
+
   return (
+
     <div className="dashboard">
       <aside className="sidebar">
         <div className="brand">
@@ -131,14 +141,32 @@ function App() {
                     <strong>{assignment.title}</strong>
                     <p>{assignment.subject}</p>
                   </div>
-                  <div className="assignment-meta">
-                    <span
-                      className={`priority ${assignment.priority.toLowerCase()}`}
-                    >
-                      {assignment.priority}
-                    </span>
-                    <small>{assignment.due}</small>
-                  </div>
+                  
+<div className="assignment-meta">
+  <span
+    className={`priority ${assignment.priority.toLowerCase()}`}
+  >
+    {assignment.priority}
+  </span>
+
+  <small>{assignment.due}</small>
+
+  <button
+    className="complete-button"
+    onClick={() => {
+      setAssignments((current) =>
+        current.map((item) =>
+          item.id === assignment.id
+            ? { ...item, completed: !item.completed }
+            : item
+        )
+      );
+    }}
+  >
+    {assignment.completed ? '✓ Completed' : 'Mark done'}
+  </button>
+</div>
+
                 </div>
               ))}
             </div>
