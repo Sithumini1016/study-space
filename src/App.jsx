@@ -47,7 +47,13 @@ function App() {
 
   return initialAssignments;
 });
-  
+  useEffect(() => {
+  localStorage.setItem(
+    'studyspace-assignments',
+    JSON.stringify(assignments)
+  );
+}, [assignments]);
+
 const [title, setTitle] = useState('');
 const [subject, setSubject] = useState('');
 const [due, setDue] = useState('');
@@ -316,8 +322,39 @@ function handleAddAssignment(event) {
           Made for your university journey <span>♥</span>
         </footer>
       </main>
+        <section className="panel timetable-panel" id="timetable">
+          <div className="panel-heading">
+            <div>
+              <h2>My Timetable</h2>
+              <p>Your weekly class schedule</p>
+            </div>
+            <span className="view-label">This week</span>
+          </div>
+
+          <div className="timetable-list">
+            <article className="timetable-item">
+              <div className="timetable-day">MON</div>
+              <div className="timetable-details">
+                <strong>Introduction to Programming</strong>
+                <p>8:00 AM – 10:00 AM</p>
+                <span>Lecture Hall A</span>
+              </div>
+            </article>
+
+            <article className="timetable-item">
+              <div className="timetable-day">TUE</div>
+              <div className="timetable-details">
+                <strong>Database Management</strong>
+                <p>10:00 AM – 12:00 PM</p>
+                <span>Computer Lab 2</span>
+              </div>
+            </article>
+          </div>
+        </section>
+
     </div>
   );
 }
 
 export default App;
+

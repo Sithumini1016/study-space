@@ -640,3 +640,53 @@ button {
 .add-button {
   margin-top: 8px;
 }
+
+.timetable-panel {
+  margin-bottom: 24px;
+}
+
+.timetable-list {
+  display: grid;
+  gap: 14px;
+  margin-top: 22px;
+}
+
+.timetable-item {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 16px;
+  border: 1px solid #eee5ff;
+  border-radius: 12px;
+  background: #fbf9ff;
+}
+
+.timetable-day {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 58px;
+  min-height: 58px;
+  border-radius: 12px;
+  background: #eee5ff;
+  color: #6840b5;
+  font-size: 13px;
+  font-weight: 800;
+}
+
+.timetable-details strong {
+  display: block;
+  color: #35205f;
+  font-size: 14px;
+}
+
+.timetable-details p {
+  margin: 7px 0 4px;
+  color: #6840b5;
+  font-size: 12px;
+}
+
+.timetable-details span {
+  color: #827894;
+  font-size: 12px;
+}
