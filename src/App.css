@@ -593,3 +593,50 @@ button {
     gap: 8px;
   }
 }
+
+.add-assignment-form {
+  display: grid;
+  gap: 10px;
+  margin-top: 22px;
+  padding: 18px;
+  border: 1px solid #eee5ff;
+  border-radius: 13px;
+  background: #fbf9ff;
+}
+
+.add-assignment-form h3 {
+  margin: 0 0 5px;
+  color: #35205f;
+  font-size: 14px;
+}
+
+.add-assignment-form label {
+  margin-top: 5px;
+  color: #655b7b;
+  font-size: 11px;
+  font-weight: 700;
+}
+
+.add-assignment-form input,
+.add-assignment-form select {
+  width: 100%;
+  min-width: 0;
+  padding: 11px 12px;
+  border: 1px solid #e4dcef;
+  border-radius: 8px;
+  background: white;
+  color: #292342;
+  font: inherit;
+  font-size: 12px;
+  outline: none;
+}
+
+.add-assignment-form input:focus,
+.add-assignment-form select:focus {
+  border-color: #8050d5;
+  box-shadow: 0 0 0 3px #8050d51a;
+}
+
+.add-button {
+  margin-top: 8px;
+}

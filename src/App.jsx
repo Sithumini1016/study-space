@@ -35,6 +35,12 @@ const initialAssignments = [
 
 function App() {
   const [assignments, setAssignments] = useState(initialAssignments);
+  
+const [title, setTitle] = useState('');
+const [subject, setSubject] = useState('');
+const [due, setDue] = useState('');
+const [priority, setPriority] = useState('Medium');
+
 
   const totalAssignments = assignments.length;
 
@@ -44,6 +50,34 @@ function App() {
 
   const pendingAssignments =
     totalAssignments - completedAssignments;
+    
+function handleAddAssignment(event) {
+  event.preventDefault();
+
+  if (!title.trim() || !subject.trim() || !due) {
+    return;
+  }
+
+  const newAssignment = {
+    id: Date.now(),
+    title: title.trim(),
+    subject: subject.trim(),
+    due: `Due ${due}`,
+    priority: priority,
+    completed: false,
+  };
+
+  setAssignments((current) => [
+    ...current,
+    newAssignment,
+  ]);
+
+  setTitle('');
+  setSubject('');
+  setDue('');
+  setPriority('Medium');
+}
+
 
   
     // Keep the rest of your existing JSX here
@@ -146,6 +180,56 @@ function App() {
               </div>
               <span className="view-label">This week</span>
             </div>
+
+            
+<form className="add-assignment-form" onSubmit={handleAddAssignment}>
+  <h3>Add a new assignment</h3>
+
+  <label htmlFor="assignment-title">Assignment title</label>
+  <input
+    id="assignment-title"
+    type="text"
+    placeholder="e.g. Research Report"
+    value={title}
+    onChange={(event) => setTitle(event.target.value)}
+    required
+  />
+
+  <label htmlFor="assignment-subject">Module / Subject</label>
+  <input
+    id="assignment-subject"
+    type="text"
+    placeholder="e.g. Computer Science"
+    value={subject}
+    onChange={(event) => setSubject(event.target.value)}
+    required
+  />
+
+  <label htmlFor="assignment-due">Deadline</label>
+  <input
+    id="assignment-due"
+    type="date"
+    value={due}
+    onChange={(event) => setDue(event.target.value)}
+    required
+  />
+
+  <label htmlFor="assignment-priority">Priority</label>
+  <select
+    id="assignment-priority"
+    value={priority}
+    onChange={(event) => setPriority(event.target.value)}
+  >
+    <option value="High">High</option>
+    <option value="Medium">Medium</option>
+    <option value="Low">Low</option>
+  </select>
+
+  <button className="primary-button add-button" type="submit">
+    + Add Assignment
+  </button>
+</form>
+
 
             <div className="assignment-list">
               {assignments.map((assignment) => (
