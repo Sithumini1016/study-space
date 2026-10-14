@@ -382,14 +382,22 @@ function handleAddClass(event) {
           </div>
 
           <div className="timetable-list">
-            <article className="timetable-item">
-              <div className="timetable-day">MON</div>
-              <div className="timetable-details">
-                <strong>Introduction to Programming</strong>
-                <p>8:00 AM – 10:00 AM</p>
-                <span>Lecture Hall A</span>
-              </div>
-            </article>
+            
+{classes.map((item) => (
+  <article className="timetable-item" key={item.id}>
+    <div className="timetable-day">
+      {item.day.slice(0, 3).toUpperCase()}
+    </div>
+
+    <div className="timetable-details">
+      <strong>{item.name}</strong>
+      <p>{item.time}</p>
+      <span>{item.location}</span>
+    </div>
+  </article>
+))}
+
+            
 
             <article className="timetable-item">
               <div className="timetable-day">TUE</div>
@@ -400,6 +408,60 @@ function handleAddClass(event) {
               </div>
             </article>
           </div>
+          
+<form className="add-assignment-form" onSubmit={handleAddClass}>
+  <h3>Add a new class</h3>
+
+  <label htmlFor="class-name">Subject name</label>
+  <input
+    id="class-name"
+    type="text"
+    placeholder="e.g. Web Development"
+    value={className}
+    onChange={(event) => setClassName(event.target.value)}
+    required
+  />
+
+  <label htmlFor="class-day">Day</label>
+  <select
+    id="class-day"
+    value={classDay}
+    onChange={(event) => setClassDay(event.target.value)}
+  >
+    <option>Monday</option>
+    <option>Tuesday</option>
+    <option>Wednesday</option>
+    <option>Thursday</option>
+    <option>Friday</option>
+    <option>Saturday</option>
+    <option>Sunday</option>
+  </select>
+
+  <label htmlFor="class-time">Time</label>
+  <input
+    id="class-time"
+    type="text"
+    placeholder="e.g. 1:00 PM – 3:00 PM"
+    value={classTime}
+    onChange={(event) => setClassTime(event.target.value)}
+    required
+  />
+
+  <label htmlFor="class-location">Location</label>
+  <input
+    id="class-location"
+    type="text"
+    placeholder="e.g. Lecture Hall B"
+    value={classLocation}
+    onChange={(event) => setClassLocation(event.target.value)}
+    required
+  />
+
+  <button className="primary-button add-button" type="submit">
+    + Add Class
+  </button>
+</form>
+
         </section>
 
     </div>
