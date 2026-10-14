@@ -1,5 +1,5 @@
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import './App.css';
 
 
@@ -34,7 +34,19 @@ const initialAssignments = [
 
 
 function App() {
-  const [assignments, setAssignments] = useState(initialAssignments);
+  const [assignments, setAssignments] = useState(() => {
+  const savedAssignments = localStorage.getItem('studyspace-assignments');
+
+  if (savedAssignments !== null) {
+    try {
+      return JSON.parse(savedAssignments);
+    } catch {
+      return initialAssignments;
+    }
+  }
+
+  return initialAssignments;
+});
   
 const [title, setTitle] = useState('');
 const [subject, setSubject] = useState('');
