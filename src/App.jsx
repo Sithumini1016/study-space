@@ -58,6 +58,27 @@ const [title, setTitle] = useState('');
 const [subject, setSubject] = useState('');
 const [due, setDue] = useState('');
 const [priority, setPriority] = useState('Medium');
+const [className, setClassName] = useState('');
+const [classDay, setClassDay] = useState('Monday');
+const [classTime, setClassTime] = useState('');
+const [classLocation, setClassLocation] = useState('');
+
+const [classes, setClasses] = useState([
+  {
+    id: 1,
+    name: 'Introduction to Programming',
+    day: 'Monday',
+    time: '8:00 AM – 10:00 AM',
+    location: 'Lecture Hall A',
+  },
+  {
+    id: 2,
+    name: 'Database Management',
+    day: 'Tuesday',
+    time: '10:00 AM – 12:00 PM',
+    location: 'Computer Lab 2',
+  },
+]);
 
 
   const totalAssignments = assignments.length;
@@ -94,6 +115,33 @@ function handleAddAssignment(event) {
   setSubject('');
   setDue('');
   setPriority('Medium');
+}
+
+function handleAddClass(event) {
+  event.preventDefault();
+
+  if (
+    !className.trim() ||
+    !classTime.trim() ||
+    !classLocation.trim()
+  ) {
+    return;
+  }
+
+  const newClass = {
+    id: Date.now(),
+    name: className.trim(),
+    day: classDay,
+    time: classTime.trim(),
+    location: classLocation.trim(),
+  };
+
+  setClasses((current) => [...current, newClass]);
+
+  setClassName('');
+  setClassDay('Monday');
+  setClassTime('');
+  setClassLocation('');
 }
 
 
@@ -233,6 +281,7 @@ function handleAddAssignment(event) {
   />
 
   <label htmlFor="assignment-priority">Priority</label>
+  
   <select
     id="assignment-priority"
     value={priority}
@@ -242,6 +291,7 @@ function handleAddAssignment(event) {
     <option value="Medium">Medium</option>
     <option value="Low">Low</option>
   </select>
+  
 
   <button className="primary-button add-button" type="submit">
     + Add Assignment
